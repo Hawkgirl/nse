@@ -21,10 +21,11 @@ class stockmanager():
 			high_dict[row[0]]= row[2]
 
 		import datetime
-		for i in range(3):
+		for i in range(5):
 			d = datetime.datetime.now() - datetime.timedelta(days=i)
 			try:
 				ltp_url='https://www.nseindia.com/archives/equities/mkt/MA'+d.strftime("%d")+d.strftime("%m")+d.strftime("%y")+'.csv'
+				#print ltp_url
 				req = urllib2.Request(ltp_url, headers={'User-Agent' : "Magic Browser"}) 
 				response = urllib2.urlopen( req )
 				break
@@ -44,7 +45,7 @@ class stockmanager():
 
 		return result
 
-	def get_near_high52(self, max=20):
+	def get_near_high52(self, max=40):
 		stocks = self.get_all_stocks()
 		sorted_stock = sorted(stocks, key = lambda stock: stock.high52gap)
 
